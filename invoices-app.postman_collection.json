@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "9e9424c1-4e11-4a91-a567-6ef6555e0d5b",
+		"name": "invoices-app",
+		"description": "aplicacion de facturas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43028695"
+	},
+	"item": [
+		{
+			"name": "invoices",
+			"item": [
+				{
+					"name": "GET invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{invoices_base}}",
+						"description": "consultar todas las factura"
+					},
+					"response": []
+				},
+				{
+					"name": "GET invoicebyId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{invoices_base}}/684350ca7d3dacbc52441e54",
+						"description": "crear consultar factura por id"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 500,\n    \"status\": \"paid\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{invoices_base}}invoices/api/",
+						"description": "crear factura"
+					},
+					"response": []
+				},
+				{
+					"name": "delete invoice",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 500,\n    \"status\": \"paid\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+						"description": "eliminar factura"
+					},
+					"response": []
+				},
+				{
+					"name": "delete invoice Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"amount\": 700,\n        \"status\": \"pending\"\n     \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{invoices_base}}/6841e366e7393c1e0424da02",
+						"description": "actualizar factura"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{invoices_base}}/users/api",
+						"description": "consultar todos los usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "GET usersbyId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "consutlat usuarios por id"
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Ana Lopez\",\n    \"email\": \"ana@ana.com\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users/api/",
+						"description": "crear usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 500,\n    \"status\": \"paid\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+						"description": "eliminar usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"username\": \"Ana Lopez\",\n            \"email\": \"ana1@ana.com\",\n            \"password\": \"123456\"\n     \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{users_base}}/1",
+						"description": "actualizar usuario"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
