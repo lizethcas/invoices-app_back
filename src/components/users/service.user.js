@@ -24,7 +24,7 @@ const getUserById = async(id) => {
     }
 }
 
-const createUser = async(username, email, password) => {
+const createUser = async(username, email, password, role) => {
     try {
         // Primero verificamos si ya existe un usuario con ese email
         const existingUser = await user.findOne({ where: { email } });
@@ -33,7 +33,7 @@ const createUser = async(username, email, password) => {
             return null; // Usuario ya existe
         }
         // Si no existe, lo creamos
-        const result = await user.create({ username, email, password });
+        const result = await user.create({ username, email, password, role });
         return result;
     } catch (error) {
         console.error('Error al crear usuario:', error);

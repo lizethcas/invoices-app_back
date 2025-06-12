@@ -13,6 +13,7 @@ export const config = {
     POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
     POSTGRES_DB: process.env.POSTGRES_DB,
     POSTGRES_PORT: process.env.POSTGRES_PORT,
+    SECRET_KEY: process.env.SECRET_KEY,
     
 }
     

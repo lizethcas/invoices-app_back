@@ -28,10 +28,15 @@ const getUserById = async(req, res, next) => {
 
 const createUser = async(req, res, next) => {
     try {
-        const { username, email, password } = req.body;
-        const newUser = await serviceUser.createUser(username, email, password);
+        const { username, email, password, role } = req.body;
+        const newUser = await serviceUser.createUser(username, email, password, role);
         if (newUser) {
-            return res.status(201).json({message: "User created successfully", data: newUser});
+            return res.status(201).json({message: "User created successfully", data: {
+                id: newUser.id,
+                username: newUser.username,
+                email: newUser.email,
+                role: newUser.role
+            }});
         }
         return res.status(400).json({message: "User already exists"});
     } catch (error) {
