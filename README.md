@@ -1,5 +1,15 @@
 # Sistema de Facturación - Proyecto Educativo
 
+## 🔔 Novedades Recientes
+
+> #### Junio 2025 - v1.1.0 - Autenticación y Seguridad Mejorada
+> 
+> - ✅ **Sistema de autenticación JWT** implementado
+> - ✅ **Control de acceso basado en roles** (admin/user)
+> - ✅ **Validaciones robustas** para datos de usuario
+> 
+> [Ver CHANGELOG completo](./CHANGELOG.md) para más detalles sobre todas las mejoras.
+
 ## 📚 Descripción
 
 Este es un proyecto educativo de una API REST para gestión de facturación desarrollado con Node.js. El sistema permite la administración de usuarios y facturas, utilizando una arquitectura moderna basada en componentes y siguiendo buenas prácticas de desarrollo.
