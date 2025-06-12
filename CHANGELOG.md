@@ -34,7 +34,6 @@
 ---
 
 ## Próximas Mejoras Planificadas
-- Cierre de sesiones
 - Implementación de recuperación de contraseñas
 - Sistema de verificación de email
 - Caducidad configurable para tokens JWT
