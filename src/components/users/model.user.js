@@ -19,12 +19,31 @@ const user = sequelize.define('User', {
     allowNull: false,
     unique: true,
     validate: {
-      isEmail: true
+      isEmail: true,
+      msg: 'El formato del correo es incorrecto'
+    },
+    notEmpty: {
+      msg: 'El correo no puede estar vacío'
+    },
+    notNull: {
+      msg: 'El correo no puede ser nulo'
     }
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      len: {
+        args: [6, 12],
+        msg: 'La contraseña debe tener entre 6 y 12 caracteres'
+      },
+      notEmpty: {
+        msg: 'La contraseña no puede estar vacía'
+      },
+      notNull: {
+        msg: 'La contraseña no puede ser nula'
+      }
+    }
   },
   role: {
     type: DataTypes.ENUM('admin', 'user'),

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "9e9424c1-4e11-4a91-a567-6ef6555e0d5b",
+		"_postman_id": "7650d3d7-7f88-4ea0-9f95-37556c56312b",
 		"name": "invoices-app",
 		"description": "aplicacion de facturas",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43028695"
 	},
 	"item": [
@@ -15,7 +15,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{invoices_base}}",
+						"url": {
+							"raw": "{{url_base}}/invoices/api",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"invoices",
+								"api"
+							]
+						},
 						"description": "consultar todas las factura"
 					},
 					"response": []
@@ -25,7 +34,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{invoices_base}}/684350ca7d3dacbc52441e54",
+						"url": {
+							"raw": "{{invoices_base}}/684350ca7d3dacbc52441e54",
+							"host": [
+								"{{invoices_base}}"
+							],
+							"path": [
+								"684350ca7d3dacbc52441e54"
+							]
+						},
 						"description": "crear consultar factura por id"
 					},
 					"response": []
@@ -44,7 +61,16 @@
 								}
 							}
 						},
-						"url": "{{invoices_base}}invoices/api/",
+						"url": {
+							"raw": "{{invoices_base}}invoices/api/",
+							"host": [
+								"{{invoices_base}}invoices"
+							],
+							"path": [
+								"api",
+								""
+							]
+						},
 						"description": "crear factura"
 					},
 					"response": []
@@ -63,7 +89,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+						"url": {
+							"raw": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"invoices",
+								"api",
+								"6841e2ea829f31a31b56eb81"
+							]
+						},
 						"description": "eliminar factura"
 					},
 					"response": []
@@ -82,7 +120,15 @@
 								}
 							}
 						},
-						"url": "{{invoices_base}}/6841e366e7393c1e0424da02",
+						"url": {
+							"raw": "{{invoices_base}}/6841e366e7393c1e0424da02",
+							"host": [
+								"{{invoices_base}}"
+							],
+							"path": [
+								"6841e366e7393c1e0424da02"
+							]
+						},
 						"description": "actualizar factura"
 					},
 					"response": []
@@ -97,7 +143,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{invoices_base}}/users/api",
+						"url": {
+							"raw": "{{invoices_base}}/users/api",
+							"host": [
+								"{{invoices_base}}"
+							],
+							"path": [
+								"users",
+								"api"
+							]
+						},
 						"description": "consultar todos los usuarios"
 					},
 					"response": []
@@ -107,6 +162,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": ""
+						},
 						"description": "consutlat usuarios por id"
 					},
 					"response": []
@@ -118,14 +176,24 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"Ana Lopez\",\n    \"email\": \"ana@ana.com\",\n    \"password\":\"123456\"\n}",
+							"raw": "{\n    \"username\": \"Ana Lopez\",\n    \"email\": \"ana@ana.com\",\n    \"password\":\"123456\",\n    \"role\":\"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/users/api/",
+						"url": {
+							"raw": "{{url_base}}/users/api/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"users",
+								"api",
+								""
+							]
+						},
 						"description": "crear usuario"
 					},
 					"response": []
@@ -144,7 +212,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+						"url": {
+							"raw": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"invoices",
+								"api",
+								"6841e2ea829f31a31b56eb81"
+							]
+						},
 						"description": "eliminar usuario"
 					},
 					"response": []
@@ -163,8 +243,68 @@
 								}
 							}
 						},
-						"url": "{{users_base}}/1",
+						"url": {
+							"raw": "{{users_base}}/1",
+							"host": [
+								"{{users_base}}"
+							],
+							"path": [
+								"1"
+							]
+						},
 						"description": "actualizar usuario"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ana@ana.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/auth/api/login",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"auth",
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/auth/api/register",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"auth",
+								"api",
+								"register"
+							]
+						}
 					},
 					"response": []
 				}

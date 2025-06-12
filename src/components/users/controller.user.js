@@ -29,7 +29,10 @@ const getUserById = async(req, res, next) => {
 const createUser = async(req, res, next) => {
     try {
         const { username, email, password, role } = req.body;
+    
         const newUser = await serviceUser.createUser(username, email, password, role);
+        
+
         if (newUser) {
             return res.status(201).json({message: "User created successfully", data: {
                 id: newUser.id,

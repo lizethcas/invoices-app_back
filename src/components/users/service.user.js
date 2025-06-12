@@ -10,6 +10,15 @@ const getAllUsers = async() => {
     }
 }
 
+const getUserByEmail = async(email) => {
+    try {
+        const result = await user.findOne({ where: { email } });
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const getUserById = async(id) => {
     try {
         const result = await user.findByPk(id);
@@ -54,4 +63,4 @@ const deleteUser = async(id) => {
     }
 }
 
-export { getAllUsers, getUserById, createUser, deleteUser }
+export { getAllUsers, getUserById, createUser, deleteUser, getUserByEmail }

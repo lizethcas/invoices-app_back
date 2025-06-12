@@ -72,7 +72,9 @@ src/
 │   ├── database.js        # Configuración de MongoDB
 │   └── postgress.js       # Configuración de PostgreSQL
 └── middleware/            # Middleware de la aplicación
-    └── logger.js          # Middleware de registro
+    ├── logger.js          # Middleware de registro
+    ├── middleware.users.js # Middleware de validación de usuarios
+    └── middelware.auth.js  # Middleware de autenticación y autorización
 ```
 
 ## 🚀 Instalación y Configuración
@@ -113,8 +115,8 @@ src/
 ## 🔌 Endpoints API
 
 ### Autenticación
-- `POST /auth/login` - Iniciar sesión con email y contraseña
-- `POST /auth/register` - Registrar un nuevo usuario
+- `POST /auth/api/login` - Iniciar sesión con email y contraseña
+- `POST /auth/api/register` - Registrar un nuevo usuario (redirige al controlador de usuarios)
 
 ### Usuarios
 - `GET /users/api` - Obtener todos los usuarios
@@ -130,7 +132,7 @@ src/
 - `PUT /invoices/api/:id` - Actualizar una factura
 - `DELETE /invoices/api/:id` - Eliminar una factura
 
-## 🧪 Colección de Postman
+## 📃 Colección de Postman
 
 El proyecto incluye una colección de Postman lista para ser importada y utilizada para probar todos los endpoints de la API. Esta colección contiene ejemplos preconfigurados para todas las operaciones CRUD tanto para usuarios como para facturas.
 
@@ -140,9 +142,16 @@ El proyecto incluye una colección de Postman lista para ser importada y utiliza
 2. Haz clic en "Import"
 3. Selecciona el archivo `invoices-app.postman_collection.json` incluido en la raíz del proyecto
 4. Una vez importada, configura las variables de entorno necesarias:
-   - `invoices_base`: URL base para los endpoints de facturas (ej. `http://localhost:3000/invoices/api`)
-   - `users_base`: URL base para los endpoints de usuarios (ej. `http://localhost:3000/users/api`)
-5. ¡Listo para probar la API!
+   - `invoices_base`: URL base para los endpoints de facturas (ej. `http://localhost:X000/invoices/api`)
+   - `users_base`: URL base para los endpoints de usuarios (ej. `http://localhost:X000/users/api`)
+   - `auth_base`: URL base para los endpoints de autenticación (ej. `http://localhost:X000/auth/api`)
+
+### Flujo de trabajo recomendado
+
+1. Crear un usuario con el endpoint `POST /auth/api/register`
+2. Iniciar sesión con el endpoint `POST /auth/api/login` para obtener un token JWT
+3. Configurar el token JWT en la autorización de tipo Bearer Token para las solicitudes posteriores
+4. ¡Ahora puedes realizar operaciones en facturas y usuarios!
 
 ## 📊 Bases de Datos
 
@@ -150,6 +159,41 @@ Este proyecto utiliza dos bases de datos diferentes para demostrar la integraci�
 
 - **MongoDB**: Utilizada para almacenar documentos como facturas
 - **PostgreSQL**: Utilizada para almacenar datos estructurados como usuarios
+
+## 🔒 Seguridad y Autenticación
+
+El sistema implementa un esquema de seguridad basado en tokens JWT:
+
+- **verifyToken**: Middleware que valida el token JWT en las peticiones a endpoints protegidos
+- **verifyRole**: Middleware que verifica si el usuario tiene el rol adecuado para acceder a ciertos recursos
+- **bcrypt**: Utilizado para el hash seguro de contraseñas antes de almacenarlas en la base de datos
+
+### Roles de Usuario
+
+El sistema soporta dos tipos de roles:
+
+- **user**: Rol estándar con acceso limitado (valor por defecto)
+- **admin**: Rol con privilegios elevados para operaciones administrativas
+
+### Validaciones de Datos
+
+El sistema incluye validaciones robustas mediante Sequelize:
+
+#### Validación de Usuarios
+
+- **Email**:  
+  - Debe tener formato válido de correo electrónico
+  - No puede estar vacío ni ser nulo
+  - Debe ser único en la base de datos
+
+- **Contraseña**:
+  - Longitud entre 6 y 12 caracteres
+  - No puede estar vacía ni ser nula
+  - Se almacena cifrada mediante bcrypt
+
+- **Nombre de usuario**:
+  - Requerido (no puede estar vacío)
+  - Debe ser único en la base de datos
 
 ## 🧪 Objetivos Educativos
 
@@ -163,6 +207,8 @@ Este proyecto está diseñado para enseñar:
 6. Gestión de configuración y variables de entorno
 7. Autenticación de usuarios con JWT y bcrypt
 8. Seguridad en APIs mediante tokens
+9. Validaciones de datos con Sequelize
+10. Manejo de roles y permisos
 
 ## 📝 Licencia
 

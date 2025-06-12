@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import {config} from "../../config/config.js";
 import bcrypt from "bcrypt";
 import serviceAuth from "./service.auth.js";
+import controllerUser from "../users/controller.user.js";
 
 const generateToken = (user) => {
     return jwt.sign(userData(user), config.SECRET_KEY, { expiresIn: "1h" });
@@ -36,9 +37,13 @@ const login = async (req, res) => {
     }
 };
 
-
+const register = async (req, res) => {
+  // Simplemente redirigimos la petición al controlador de usuarios
+  return controllerUser.createUser(req, res);
+}
 
 export default {
     login,
+    register
 }
     
