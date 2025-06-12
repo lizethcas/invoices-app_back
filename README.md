@@ -43,6 +43,8 @@ Este es un proyecto educativo de una API REST para gestión de facturación desa
 - **Sequelize**: ORM para interactuar con PostgreSQL
 - **Docker**: Contenedorización de la aplicación y sus dependencias
 - **Docker Compose**: Orquestación de contenedores
+- **JWT**: Autenticación basada en tokens para proteger endpoints
+- **bcrypt**: Cifrado de contraseñas para almacenamiento seguro
 
 ## 🏗️ Arquitectura
 
@@ -51,6 +53,10 @@ El proyecto sigue una arquitectura basada en componentes con separación clara d
 ```
 src/
 ├── components/            # Componentes de la aplicación
+│   ├── auth/              # Módulo de autenticación
+│   │   ├── auth.controller.js
+│   │   ├── auth.routes.js
+│   │   └── service.auth.js
 │   ├── invoices/          # Módulo de facturas
 │   │   ├── controller.invoices.js
 │   │   ├── models.invoices.js
@@ -106,6 +112,10 @@ src/
 
 ## 🔌 Endpoints API
 
+### Autenticación
+- `POST /auth/login` - Iniciar sesión con email y contraseña
+- `POST /auth/register` - Registrar un nuevo usuario
+
 ### Usuarios
 - `GET /users/api` - Obtener todos los usuarios
 - `POST /users/api` - Crear un nuevo usuario
@@ -151,6 +161,8 @@ Este proyecto está diseñado para enseñar:
 4. Uso de Docker para desarrollo y despliegue
 5. Estructura de carpetas en Node.js
 6. Gestión de configuración y variables de entorno
+7. Autenticación de usuarios con JWT y bcrypt
+8. Seguridad en APIs mediante tokens
 
 ## 📝 Licencia
 
