@@ -54,7 +54,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqdWFuQGp1YW4uY29tIiwidXNlcm5hbWUiOiJKdWFuIExvcGV6Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDk5MTA4MTYsImV4cCI6MTc0OTkxNDQxNn0.Pn0uthNk46W3Uqmlwf1MEynqF9yyi2Wh488yl1WPhnk",
+								"value": "Bearer {{token}}",
 								"type": "text"
 							}
 						],
@@ -97,7 +97,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+							"raw": "{{url_base}}/invoices/api/6841e2ea829f31a31b56eb81",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -128,9 +128,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{invoices_base}}/6841e366e7393c1e0424da02",
+							"raw": "{{url_base}}/6841e366e7393c1e0424da02",
 							"host": [
-								"{{invoices_base}}"
+								"{{url_base}}"
 							],
 							"path": [
 								"6841e366e7393c1e0424da02"
@@ -170,7 +170,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{url_base}}/users/api/1"
 						},
 						"description": "consutlat usuarios por id"
 					},
@@ -220,7 +220,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/invoices/api/6841e2ea829f31a31b56eb81",
+							"raw": "{{url_base}}/invoices/api/6841e2ea829f31a31b56eb81",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -251,11 +251,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{users_base}}/1",
+							"raw": "{{url_base}}/users/api/1",
 							"host": [
-								"{{users_base}}"
+								"{{url_base}}"
 							],
 							"path": [
+								"users",
+								"api",
 								"1"
 							]
 						},
