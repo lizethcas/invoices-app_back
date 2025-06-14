@@ -8,7 +8,7 @@ const getAllInvoices = async (req, res) => {
             const invoices = await serviceInvoice.getAllInvoices();
             return res.status(200).json({ data: invoices });
         }
-        const invoices = await getInvoicesByCustomer(id);
+        const invoices = await serviceInvoice.getInvoicesByCustomer(id);
         return res.status(200).json({ data: invoices });
     } catch (error) {
         return res.status(500).json({ message: "Error al obtener las facturas", error: error.message });
