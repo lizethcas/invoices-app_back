@@ -12,21 +12,21 @@ const user = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
     validate: {
-      isEmail: true,
-      msg: 'El formato del correo es incorrecto'
-    },
-    notEmpty: {
-      msg: 'El correo no puede estar vacío'
-    },
-    notNull: {
-      msg: 'El correo no puede ser nulo'
+      isEmail: {
+        msg: 'El formato del correo es incorrecto'
+      },
+      notEmpty: {
+        msg: 'El correo no puede estar vacío'
+      },
+      notNull: {
+        msg: 'El correo no puede ser nulo'
+      }
     }
   },
   password: {

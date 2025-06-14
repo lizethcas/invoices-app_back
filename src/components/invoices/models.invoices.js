@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const invoiceSchema = new mongoose.Schema({
-    customer:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"user",
-        required:false,
+    customerId :{
+        type:Number,
+        required:true,
+        comment: "ID del usuario que creó la factura"
     },
     amount:{
         type:Number,

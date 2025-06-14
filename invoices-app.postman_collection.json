@@ -35,9 +35,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{invoices_base}}/684350ca7d3dacbc52441e54",
+							"raw": "{{url_base}}/684350ca7d3dacbc52441e54",
 							"host": [
-								"{{invoices_base}}"
+								"{{url_base}}"
 							],
 							"path": [
 								"684350ca7d3dacbc52441e54"
@@ -48,13 +48,19 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "create invoice",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqdWFuQGp1YW4uY29tIiwidXNlcm5hbWUiOiJKdWFuIExvcGV6Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDk5MTA4MTYsImV4cCI6MTc0OTkxNDQxNn0.Pn0uthNk46W3Uqmlwf1MEynqF9yyi2Wh488yl1WPhnk",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"amount\": 500,\n    \"status\": \"paid\"\n}",
+							"raw": "{\n    \"amount\": 800,\n    \"status\": \"pending\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -62,11 +68,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{invoices_base}}invoices/api/",
+							"raw": "{{url_base}}/invoices/api/",
 							"host": [
-								"{{invoices_base}}invoices"
+								"{{url_base}}"
 							],
 							"path": [
+								"invoices",
 								"api",
 								""
 							]
@@ -144,9 +151,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{invoices_base}}/users/api",
+							"raw": "{{url_base}}/users/api",
 							"host": [
-								"{{invoices_base}}"
+								"{{url_base}}"
 							],
 							"path": [
 								"users",
@@ -262,7 +269,7 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "login",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -294,6 +301,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"sofia Lopez\",\n    \"email\": \"sofia@sofia.com\",\n    \"password\":\"123456\"\n   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{url_base}}/auth/api/register",
 							"host": [
@@ -307,6 +323,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "invoices",
+					"item": [
+						{
+							"name": "get invoiceByCustomer",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

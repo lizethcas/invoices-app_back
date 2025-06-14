@@ -9,7 +9,7 @@ const generateToken = (user) => {
     return jwt.sign(userData(user), config.SECRET_KEY, { expiresIn: "1h" });
 }
 
-const userData = (user) => {
+export const userData = (user) => {
     return {
         id: user.id,
         email: user.email,

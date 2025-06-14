@@ -41,12 +41,27 @@ const getInvoiceById = async (id) => {
     }
 }
 
+const getInvoicesByCustomer = async (id) => {
+    try {
+        console.log(`Buscando facturas para el cliente con ID: ${id}`);
+        const invoices = await invoiceModel.find({ customerId: id });
+        if(!invoices){
+            return null;
+        }
+        
+        return invoices;
+    } catch (error) {
+        console.error(`Error al buscar facturas para el cliente con ID ${customer}:`, error);
+        throw error;
+    }
+}
 // Función para crear una nueva factura
-const createInvoice = async (amount, status) => {
+const createInvoice = async (amount, status, id) => {
     try {
         const newInvoice = {
+            customerId:  id, // Si no se proporciona un customer específico, usa el userId
             amount,
-            status
+            status,
         };
         
         console.log("Creando nueva factura:", newInvoice);
@@ -86,4 +101,4 @@ const updateInvoice = async (id, amount, status) => {
     }
 }   
 
-export { getAllInvoices, getInvoiceById, createInvoice, deleteInvoice, updateInvoice }
+export { getAllInvoices, getInvoiceById, getInvoicesByCustomer, createInvoice, deleteInvoice, updateInvoice }
