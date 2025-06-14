@@ -2,6 +2,12 @@
 
 ## 🔔 Novedades Recientes
 
+> #### Junio 2025 - v1.2.0 - Filtrado de Facturas y Mejoras de Servicios
+> 
+> - ✅ **Filtrado de facturas por cliente** implementado
+> - ✅ **Mejoras en los servicios de facturación**
+>
+>
 > #### Junio 2025 - v1.1.0 - Autenticación y Seguridad Mejorada
 > 
 > - ✅ **Sistema de autenticación JWT** implementado
@@ -139,6 +145,7 @@ src/
 - `GET /invoices/api` - Obtener todas las facturas
 - `POST /invoices/api` - Crear una nueva factura
 - `GET /invoices/api/:id` - Obtener una factura por ID
+- `GET /invoices/api/customer/:id` - Obtener facturas de un cliente específico
 - `PUT /invoices/api/:id` - Actualizar una factura
 - `DELETE /invoices/api/:id` - Eliminar una factura
 
@@ -152,9 +159,7 @@ El proyecto incluye una colección de Postman lista para ser importada y utiliza
 2. Haz clic en "Import"
 3. Selecciona el archivo `invoices-app.postman_collection.json` incluido en la raíz del proyecto
 4. Una vez importada, configura las variables de entorno necesarias:
-   - `invoices_base`: URL base para los endpoints de facturas (ej. `http://localhost:X000/invoices/api`)
-   - `users_base`: URL base para los endpoints de usuarios (ej. `http://localhost:X000/users/api`)
-   - `auth_base`: URL base para los endpoints de autenticación (ej. `http://localhost:X000/auth/api`)
+   - `url_base`: URL base para los endpoints de facturas (ej. `http://localhost:X000/invoices/api`)
 
 ### Flujo de trabajo recomendado
 
@@ -162,6 +167,7 @@ El proyecto incluye una colección de Postman lista para ser importada y utiliza
 2. Iniciar sesión con el endpoint `POST /auth/api/login` para obtener un token JWT
 3. Configurar el token JWT en la autorización de tipo Bearer Token para las solicitudes posteriores
 4. ¡Ahora puedes realizar operaciones en facturas y usuarios!
+5. Para filtrar facturas por cliente, utiliza el endpoint `GET /invoices/api/customer/:id`
 
 ## 📊 Bases de Datos
 
@@ -183,7 +189,36 @@ El sistema implementa un esquema de seguridad basado en tokens JWT:
 El sistema soporta dos tipos de roles:
 
 - **user**: Rol estándar con acceso limitado (valor por defecto)
+  - Puede crear, leer, actualizar y eliminar SOLO SUS PROPIAS facturas
+  - No tiene acceso a información de otros usuarios   
+  - Al listar facturas, solo ve las asociadas a su ID de usuario
+
 - **admin**: Rol con privilegios elevados para operaciones administrativas
+  - Acceso completo a todos los recursos del sistema
+  - Puede gestionar todos los usuarios (crear, leer, actualizar, eliminar)
+  - Puede gestionar todas las facturas independientemente del cliente
+  - No tiene restricciones en listados o búsquedas
+
+### Implementación de Permisos
+
+El control de acceso se implementa en dos niveles:
+
+1. **Middleware de Autenticación**:
+   - Valida que el token JWT sea válido en cada solicitud a endpoints protegidos
+   - Extrae la información del usuario (ID y rol) y la adjunta al objeto de solicitud
+
+2. **Middleware de Autorización**:
+   - `verifyRole`: Valida que el usuario tenga el rol "admin" para acceder a rutas restringidas
+   - Controles de acceso basados en la propiedad de los recursos (un usuario regular solo puede acceder a sus propios recursos)
+
+### Flujo de Autorización
+
+1. El usuario se autentica y recibe un token JWT
+2. El token se incluye en el encabezado "Authorization" de las solicitudes subsiguientes
+3. El middleware `verifyToken` valida el token y extrae la información del usuario
+4. Según la ruta solicitada:
+   - Si requiere permisos de administrador, se aplica el middleware `verifyRole`
+   - En los controladores, se realizan verificaciones adicionales para garantizar que un usuario solo acceda a sus propios recursos
 
 ### Validaciones de Datos
 
