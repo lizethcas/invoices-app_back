@@ -10,6 +10,8 @@ services:
         volumes:
             - .:/app
             - /app/node_modules
+        env_file:
+            - .env
         environment:
             - PORT=${PORT}
             - NODE_ENV=development
@@ -45,9 +47,19 @@ services:
             - "${POSTGRES_PORT}:${POSTGRES_PORT}"
         volumes: 
             - postgres_data_invoices_app:/var/lib/postgresql/data
+    redis:
+        image: redis
+        env_file:
+            - .env
+        container_name: redis
+        ports:
+            - "${REDIS_PORT}:${REDIS_PORT}"
+        volumes:
+            - redis_data_invoices_app:/data
 
  
 
 volumes:
     mongodb_data_invoices_app:
     postgres_data_invoices_app:
+    redis_data_invoices_app:

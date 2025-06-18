@@ -2,18 +2,17 @@
 
 ## 🔔 Novedades Recientes
 
+> #### Junio 2025 - v1.3.0 - Autenticación con Redis
+> 
+> - ✅ **Integración con Redis** para gestión avanzada de sesiones
+> - ✅ **Sistema de blacklist** para tokens revocados
+> - ✅ **Mejoras en la seguridad** de la autenticación
+>
 > #### Junio 2025 - v1.2.0 - Filtrado de Facturas y Mejoras de Servicios
 > 
 > - ✅ **Filtrado de facturas por cliente** implementado
 > - ✅ **Mejoras en los servicios de facturación**
 >
->
-> #### Junio 2025 - v1.1.0 - Autenticación y Seguridad Mejorada
-> 
-> - ✅ **Sistema de autenticación JWT** implementado
-> - ✅ **Control de acceso basado en roles** (admin/user)
-> - ✅ **Validaciones robustas** para datos de usuario
-> 
 > [Ver CHANGELOG completo](./CHANGELOG.md) para más detalles sobre todas las mejoras.
 
 ## 📚 Descripción
@@ -37,11 +36,17 @@ Este es un proyecto educativo de una API REST para gestión de facturación desa
   <a href="https://www.postgresql.org/" target="_blank">
     <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
   </a>
+  <a href="https://redis.io/" target="_blank">
+    <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
+  </a>
   <a href="https://mongoosejs.com/" target="_blank">
     <img src="https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white" alt="Mongoose" />
   </a>
   <a href="https://sequelize.org/" target="_blank">
     <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white" alt="Sequelize" />
+  </a>
+  <a href="https://jwt.io/" target="_blank">
+    <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="JWT" />
   </a>
   <a href="https://www.docker.com/" target="_blank">
     <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
@@ -55,12 +60,14 @@ Este es un proyecto educativo de una API REST para gestión de facturación desa
 - **Express**: Framework para crear APIs REST de manera sencilla
 - **MongoDB**: Base de datos NoSQL para almacenamiento de documentos
 - **PostgreSQL**: Base de datos relacional para datos estructurados
+- **Redis**: Almacén de estructura de datos en memoria para gestión de sesiones
 - **Mongoose**: ODM para facilitar la interacción con MongoDB
 - **Sequelize**: ORM para interactuar con PostgreSQL
 - **Docker**: Contenedorización de la aplicación y sus dependencias
 - **Docker Compose**: Orquestación de contenedores
-- **JWT**: Autenticación basada en tokens para proteger endpoints
+- **JWT (JSON Web Tokens)**: Autenticación basada en tokens para proteger endpoints
 - **bcrypt**: Cifrado de contraseñas para almacenamiento seguro
+- **ioredis**: Cliente Redis para Node.js con soporte para Promesas
 
 ## 🏗️ Arquitectura
 
@@ -70,9 +77,9 @@ El proyecto sigue una arquitectura basada en componentes con separación clara d
 src/
 ├── components/            # Componentes de la aplicación
 │   ├── auth/              # Módulo de autenticación
-│   │   ├── auth.controller.js
-│   │   ├── auth.routes.js
-│   │   └── service.auth.js
+│   │   ├── auth.controller.js  # Controlador de autenticación
+│   │   ├── auth.routes.js      # Rutas de autenticación
+│   │   └── service.auth.js     # Lógica de negocio de autenticación
 │   ├── invoices/          # Módulo de facturas
 │   │   ├── controller.invoices.js
 │   │   ├── models.invoices.js
@@ -86,11 +93,12 @@ src/
 ├── config/                # Configuración de la aplicación
 │   ├── config.js          # Variables de configuración
 │   ├── database.js        # Configuración de MongoDB
-│   └── postgress.js       # Configuración de PostgreSQL
+│   ├── postgress.js       # Configuración de PostgreSQL
+│   └── redis.js           # Configuración de Redis para gestión de sesiones
 └── middleware/            # Middleware de la aplicación
     ├── logger.js          # Middleware de registro
     ├── middleware.users.js # Middleware de validación de usuarios
-    └── middelware.auth.js  # Middleware de autenticación y autorización
+    └── middelware.auth.js # Middleware de autenticación y autorización
 ```
 
 ## 🚀 Instalación y Configuración
@@ -164,23 +172,35 @@ El proyecto incluye una colección de Postman lista para ser importada y utiliza
 ### Flujo de trabajo recomendado
 
 1. Crear un usuario con el endpoint `POST /auth/api/register`
-2. Iniciar sesión con el endpoint `POST /auth/api/login` para obtener un token JWT
-3. Configurar el token JWT en la autorización de tipo Bearer Token para las solicitudes posteriores
-4. ¡Ahora puedes realizar operaciones en facturas y usuarios!
-5. Para filtrar facturas por cliente, utiliza el endpoint `GET /invoices/api/customer/:id`
+2. Iniciar sesión con el endpoint `POST /auth/api/login` para obtener las cookies HTTP-Only con los tokens
+3. Las cookies se envían automáticamente en cada solicitud, no es necesario configurar headers manualmente
+4. El refresh token se renueva automáticamente cuando el access token expira usando el endpoint `POST /auth/api/refresh`
+5. Para cerrar sesión, usa el endpoint `POST /auth/api/logout`
+6. ¡Ahora puedes realizar operaciones en facturas y usuarios!
+7. Para filtrar facturas por cliente, utiliza el endpoint `GET /invoices/api/customer/:id`
 
 ## 📊 Bases de Datos
 
-Este proyecto utiliza dos bases de datos diferentes para demostrar la integración con distintos sistemas:
+Este proyecto utiliza múltiples sistemas de almacenamiento para diferentes propósitos:
 
-- **MongoDB**: Utilizada para almacenar documentos como facturas
-- **PostgreSQL**: Utilizada para almacenar datos estructurados como usuarios
+- **MongoDB**: Almacena documentos como facturas
+- **PostgreSQL**: Almacena datos estructurados de usuarios
+- **Redis**: Gestiona sesiones activas y blacklist de tokens
 
 ## 🔒 Seguridad y Autenticación
 
-El sistema implementa un esquema de seguridad basado en tokens JWT:
+El sistema implementa un esquema de seguridad avanzado con JWT y Redis:
 
-- **verifyToken**: Middleware que valida el token JWT en las peticiones a endpoints protegidos
+- **Autenticación por Tokens**:
+  - Access Token (15 min de duración)
+  - Refresh Token (7 días, almacenado en Redis)
+  - Cookies HTTP-Only seguras
+
+- **Protecciones de Seguridad**:
+  - Blacklist de tokens revocados
+  - Protección contra CSRF
+  - Headers de seguridad HTTP
+
 - **verifyRole**: Middleware que verifica si el usuario tiene el rol adecuado para acceder a ciertos recursos
 - **bcrypt**: Utilizado para el hash seguro de contraseñas antes de almacenarlas en la base de datos
 
@@ -211,14 +231,38 @@ El control de acceso se implementa en dos niveles:
    - `verifyRole`: Valida que el usuario tenga el rol "admin" para acceder a rutas restringidas
    - Controles de acceso basados en la propiedad de los recursos (un usuario regular solo puede acceder a sus propios recursos)
 
-### Flujo de Autorización
+### Flujo de Autenticación y Autorización
 
-1. El usuario se autentica y recibe un token JWT
-2. El token se incluye en el encabezado "Authorization" de las solicitudes subsiguientes
-3. El middleware `verifyToken` valida el token y extrae la información del usuario
-4. Según la ruta solicitada:
-   - Si requiere permisos de administrador, se aplica el middleware `verifyRole`
-   - En los controladores, se realizan verificaciones adicionales para garantizar que un usuario solo acceda a sus propios recursos
+1. **Inicio de Sesión**:
+   - El usuario envía credenciales válidas
+   - El servidor genera dos tokens:
+     - **Access Token** (corto, 15 minutos)
+     - **Refresh Token** (largo, 7 días) almacenado en Redis
+   - Ambos tokens se envían como cookies HTTP-Only
+
+2. **Acceso a Rutas Protegidas**:
+   - El cliente envía automáticamente las cookies con cada solicitud
+   - El middleware `verifyToken`:
+     - Verifica el token de acceso
+
+3. **Refresco de Tokens**:
+   - Cuando el access token expira, el cliente usa el refresh token
+   - Consulta la blacklist en Redis
+   - Si el token es válido, permite el acceso
+   - El middleware `verifyRefreshToken`:
+     - Verifica el refresh token contra Redis
+     - Si es válido, genera nuevos tokens
+     - Invalida el refresh token anterior
+
+4. **Cierre de Sesión**:
+   - El servidor invalida ambos tokens
+   - Los tokens se agregan a la blacklist en Redis
+   - Se eliminan las cookies del cliente
+
+5. **Control de Acceso**:
+   - Para rutas de administrador, se usa `verifyRole`
+   - Los controladores verifican la propiedad de los recursos
+   - Todas las operaciones se registran para auditoría
 
 ### Validaciones de Datos
 
@@ -245,15 +289,19 @@ El sistema incluye validaciones robustas mediante Sequelize:
 Este proyecto está diseñado para enseñar:
 
 1. Desarrollo de APIs REST con Express
-2. Integración con múltiples bases de datos (SQL y NoSQL)
-3. Arquitectura de aplicaciones basada en componentes
-4. Uso de Docker para desarrollo y despliegue
-5. Estructura de carpetas en Node.js
-6. Gestión de configuración y variables de entorno
-7. Autenticación de usuarios con JWT y bcrypt
-8. Seguridad en APIs mediante tokens
-9. Validaciones de datos con Sequelize
-10. Manejo de roles y permisos
+2. Integración con múltiples bases de datos (SQL, NoSQL y Redis)
+3. Gestión de sesiones con Redis
+4. Implementación de blacklist para tokens JWT
+5. Arquitectura de aplicaciones basada en componentes
+6. Uso de Docker para desarrollo y despliegue
+7. Estructura de carpetas en Node.js
+8. Gestión de configuración y variables de entorno
+9. Autenticación de usuarios con JWT y bcrypt
+10. Seguridad avanzada en APIs mediante tokens
+11. Validaciones de datos con Sequelize
+12. Manejo de roles y permisos
+13. Implementación de tokens de refresco seguros
+14. Gestión de la expiración de sesiones
 
 ## 📝 Licencia
 

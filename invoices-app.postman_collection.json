@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7650d3d7-7f88-4ea0-9f95-37556c56312b",
+		"_postman_id": "dbb30e6b-326f-470d-835c-1396d648bc58",
 		"name": "invoices-app",
 		"description": "aplicacion de facturas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -139,6 +139,27 @@
 						"description": "actualizar factura"
 					},
 					"response": []
+				},
+				{
+					"name": "get invoiceByCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/invoices/api/customer/:id",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"invoices",
+								"api",
+								"customer",
+								":id"
+							]
+						},
+						"description": "## Get Invoice by ID\n\nEsta ruta esta protegida, solo los usuarios administradores pueden consultarla."
+					},
+					"response": []
 				}
 			]
 		},
@@ -170,7 +191,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url_base}}/users/api/1"
+							"raw": "{{url_base}}/users/api/:id",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"users",
+								"api",
+								":id"
+							]
 						},
 						"description": "consutlat usuarios por id"
 					},
@@ -220,14 +249,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url_base}}/invoices/api/6841e2ea829f31a31b56eb81",
-							"protocol": "http",
+							"raw": "{{url_base}}/users/api/:id",
 							"host": [
-								"localhost"
+								"{{url_base}}"
 							],
-							"port": "3000",
 							"path": [
-								"invoices",
+								"users",
 								"api",
 								"6841e2ea829f31a31b56eb81"
 							]
@@ -251,14 +278,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url_base}}/users/api/1",
+							"raw": "{{url_base}}/users/api/:id",
 							"host": [
 								"{{url_base}}"
 							],
 							"path": [
 								"users",
 								"api",
-								"1"
+								":id"
 							]
 						},
 						"description": "actualizar usuario"
@@ -272,12 +299,34 @@
 			"item": [
 				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ana@ana.com\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"sofia@sofia.com\",\n    \"password\": \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -327,30 +376,42 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "refresh",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/auth/api/refresh-token",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"auth",
+								"api",
+								"refresh-token"
+							]
+						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "admin",
-			"item": [
+				},
 				{
-					"name": "invoices",
-					"item": [
-						{
-							"name": "get invoiceByCustomer",
-							"request": {
-								"method": "GET",
-								"header": []
-							},
-							"response": []
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/auth/api/logout",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"auth",
+								"api",
+								"logout"
+							]
 						}
-					]
+					},
+					"response": []
 				}
 			]
 		}

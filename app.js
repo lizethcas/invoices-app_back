@@ -8,8 +8,10 @@ import { connectDB } from "./src/config/database.js";
 import { testConnection } from "./src/config/postgress.js";
 import { config } from "./src/config/config.js";
 import { verifyToken, verifyRole } from "./src/middleware/middelware.auth.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
+
 
 const PORT = config.PORT 
 const app = express();
@@ -24,10 +26,12 @@ Promise.all([
     console.log("Connected to MongoDB");
     app.use(logger)
     app.use(express.json());
+    app.use(cookieParser());
 
     app.use("/invoices/api", verifyToken, invoicesRoutes);
     app.use("/users/api", verifyToken, verifyRole,usersRoutes)
     app.use("/auth/api", authRoutes)
+  
 
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`);

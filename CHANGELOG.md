@@ -1,6 +1,26 @@
 # 🚀 NOVEDADES - Sistema de Facturación
 
+## Junio 2025 - Versión 1.3.0
+
+### ✨ Nuevas características
+
+#### Sistema de Autenticación Mejorado con Redis
+- **Gestión de tokens de refresco** con almacenamiento en Redis
+- **Blacklist de tokens** para manejo seguro de cierres de sesión
+- **Sistema de expiración automática** para tokens revocados
+
+#### Mejoras en Seguridad
+- **Verificación de tokens en Redis** para prevenir reutilización
+- **Manejo mejorado de sesiones** con expiración controlada
+- **Protección contra reutilización de tokens** mediante blacklisting
+
+### 🛠️ Cambios Técnicos
+- **Integración con Redis** para gestión de sesiones
+- **Refactorización del middleware de autenticación**
+- **Mejora en el manejo de errores** para flujos de autenticación
+
 ## Junio 2025 - Versión 1.2.0
+
 
 ### ✨ Nuevas características
 
@@ -64,10 +84,25 @@
 ---
 
 ## Próximas Mejoras Planificadas
-- Implementación de recuperación de contraseñas
-- Sistema de verificación de email
-- Caducidad configurable para tokens JWT
-- Pruebas de calidad
-- Documentación detallada de la API con Swagger
-- Despliegue en Docker con docker-compose
+
+### Prioridad Alta
+- [ ] Implementación de recuperación de contraseñas
+- [ ] Sistema de verificación de email
+- [ ] Manejo de archivos multimedia con supabase
+- [ ] Implementacion de Cors
+- [ ] Documentación detallada de la API con Swagger
+- [ ] Pruebas unitarias y de integración
+- [ ] Despliegue en Docker con docker-compose
+
+### Prioridad Media
+- [ ] Límite de intentos de inicio de sesión
+- [ ] Auditoría de seguridad
+- [ ] Monitoreo de la API
+- [ ] Dashboard de administración
+
+### Mejoras Técnicas
+- [ ] Refactorización para mejorar la escalabilidad
+- [ ] Implementación de patrones de diseño adicionales
+- [ ] Optimización de consultas a la base de datos
+- [ ] Mejora en el manejo de errores
   

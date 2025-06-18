@@ -14,6 +14,7 @@ export const config = {
     POSTGRES_DB: process.env.POSTGRES_DB,
     POSTGRES_PORT: process.env.POSTGRES_PORT,
     SECRET_KEY: process.env.SECRET_KEY,
-    
+    REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
+    REDIS_PORT: process.env.REDIS_PORT,
 }
     

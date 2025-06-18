@@ -59,7 +59,7 @@ const getInvoicesByCustomer = async (id) => {
 const createInvoice = async (amount, status, id) => {
     try {
         const newInvoice = {
-            customerId:  id, // Si no se proporciona un customer específico, usa el userId
+            customerId: id,
             amount,
             status,
         };
