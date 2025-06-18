@@ -21,9 +21,6 @@
 
 ## Junio 2025 - Versión 1.2.0
 
-
-### ✨ Nuevas características
-
 #### Filtrado de Facturas Mejorado
 - **Filtrado de facturas por cliente** implementado con nuevo endpoint
 - **Mejoras en los servicios de facturación** para optimizar consultas
@@ -46,8 +43,6 @@
 ---
 
 ## Junio 2025 - Versión 1.1.0
-
-### ✨ Nuevas características
 
 #### Sistema de Autenticación Mejorado
 
