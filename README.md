@@ -2,6 +2,13 @@
 
 ## 🔔 Novedades Recientes
 
+> #### Junio 2025 - v1.4.0 - Gestión de Archivos con Supabase
+> 
+> - ✅ **Integración con Supabase Storage** para almacenamiento de imágenes
+> - ✅ **Procesamiento de imágenes** con optimización y conversión a WebP
+> - ✅ **Sistema de avatares** para usuarios
+> - ✅ **Carga múltiple de archivos** con manejo inteligente de errores
+>
 > #### Junio 2025 - v1.3.0 - Autenticación con Redis
 > 
 > - ✅ **Integración con Redis** para gestión avanzada de sesiones
@@ -39,6 +46,9 @@ Este es un proyecto educativo de una API REST para gestión de facturación desa
   <a href="https://redis.io/" target="_blank">
     <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
   </a>
+  <a href="https://supabase.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
+  </a>
   <a href="https://mongoosejs.com/" target="_blank">
     <img src="https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white" alt="Mongoose" />
   </a>
@@ -53,6 +63,9 @@ Este es un proyecto educativo de una API REST para gestión de facturación desa
   </a>
   <a href="https://docs.docker.com/compose/" target="_blank">
     <img src="https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Compose" />
+  </a>
+  <a href="https://sharp.pixelplumbing.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Sharp-99CC00?style=for-the-badge&logo=node.js&logoColor=white" alt="Sharp" />
   </a>
 </p>
 
@@ -140,36 +153,61 @@ src/
 
 ### Autenticación
 - `POST /auth/api/login` - Iniciar sesión con email y contraseña
-- `POST /auth/api/register` - Registrar un nuevo usuario (redirige al controlador de usuarios)
+- `POST /auth/api/register` - Registrar un nuevo usuario
+- `POST /auth/api/logout` - Cerrar sesión
+- `GET /auth/api/refresh-token` - Renovar el token de acceso
 
 ### Usuarios
-- `GET /users/api` - Obtener todos los usuarios
-- `POST /users/api` - Crear un nuevo usuario
-- `GET /users/api/:id` - Obtener un usuario por ID
-- `PUT /users/api/:id` - Actualizar un usuario
-- `DELETE /users/api/:id` - Eliminar un usuario
+- `GET /users/api/` - Obtener todos los usuarios (solo admin)
+- `GET /users/api/profile` - Obtener perfil del usuario actual
+- `GET /users/api/:id` - Obtener un usuario por ID (solo admin)
+- `PATCH /users/api/` - Actualizar perfil del usuario actual
+- `PATCH /users/api/:id` - Actualizar un usuario (solo admin)
+- `POST /users/api/` - Crear un nuevo usuario (solo admin)
+- `DELETE /users/api/:id` - Eliminar un usuario (solo admin)
+- `POST /users/api/upload-user-image` - Subir imagen de perfil
+- `POST /users/api/upload-user-images` - Subir múltiples imágenes
 
 ### Facturas
-- `GET /invoices/api` - Obtener todas las facturas
-- `POST /invoices/api` - Crear una nueva factura
+- `GET /invoices/api/` - Obtener todas las facturas (filtradas por usuario si no es admin)
 - `GET /invoices/api/:id` - Obtener una factura por ID
 - `GET /invoices/api/customer/:id` - Obtener facturas de un cliente específico
-- `PUT /invoices/api/:id` - Actualizar una factura
+- `POST /invoices/api/` - Crear una nueva factura
+- `PATCH /invoices/api/:id` - Actualizar una factura
 - `DELETE /invoices/api/:id` - Eliminar una factura
 
-## 📃 Colección de Postman
+### Documentación
+- `GET /api-docs` - Documentación interactiva de la API (Swagger UI)
 
-El proyecto incluye una colección de Postman lista para ser importada y utilizada para probar todos los endpoints de la API. Esta colección contiene ejemplos preconfigurados para todas las operaciones CRUD tanto para usuarios como para facturas.
+## 📊 Documentación de la API
 
-### Cómo usar la colección de Postman
+### Documentación interactiva con Swagger
+
+El proyecto incluye documentación completa e interactiva de la API mediante Swagger UI. Esto permite explorar todos los endpoints disponibles, ver los formatos de solicitud y respuesta, y probar las API directamente desde el navegador.
+
+#### Cómo acceder a la documentación Swagger
+
+1. Inicia la aplicación con `npm run dev` o mediante Docker
+2. Abre en tu navegador: `http://localhost:{{port}}/api-docs`
+3. Explora la documentación interactiva:
+   - Agrupa los endpoints por categorías (Usuarios, Facturas, Autenticación)
+   - Muestra los esquemas de datos requeridos
+   - Permite probar los endpoints directamente
+   - Incluye ejemplos de respuestas de éxito y error
+
+### Colección de Postman
+
+Además de Swagger, el proyecto incluye una colección de Postman lista para ser importada y utilizada para probar todos los endpoints de la API. Esta colección contiene ejemplos preconfigurados para todas las operaciones CRUD tanto para usuarios como para facturas.
+
+#### Cómo usar la colección de Postman
 
 1. Abre Postman
 2. Haz clic en "Import"
 3. Selecciona el archivo `invoices-app.postman_collection.json` incluido en la raíz del proyecto
 4. Una vez importada, configura las variables de entorno necesarias:
-   - `url_base`: URL base para los endpoints de facturas (ej. `http://localhost:X000/invoices/api`)
+   - `url_base`: URL base para los endpoints de facturas (ej. `http://localhost:{{port}}/invoices/api`)
 
-### Flujo de trabajo recomendado
+#### Flujo de trabajo recomendado
 
 1. Crear un usuario con el endpoint `POST /auth/api/register`
 2. Iniciar sesión con el endpoint `POST /auth/api/login` para obtener las cookies HTTP-Only con los tokens

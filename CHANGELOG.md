@@ -1,5 +1,29 @@
 # 🚀 NOVEDADES - Sistema de Facturación
 
+## Junio 2025 - Versión 1.4.0
+
+### ✨ Nuevas características
+
+#### Integración con Supabase para gestión de archivos
+
+- **Subida de imágenes de usuario** usando Supabase Storage
+- **Procesamiento de imágenes** con Sharp para optimización
+- **Carga múltiple de archivos** con manejo avanzado de errores
+- **Conversión automática a WebP** para mejor rendimiento y tamaño
+
+#### Mejoras en la API de usuarios
+
+- **Avatar personalizado** para cada usuario
+- **Almacenamiento seguro** de imágenes en la nube
+- **Redimensionamiento automático** de imágenes para optimizar el rendimiento
+
+### 🛠️ Cambios Técnicos
+
+- **Integración con Supabase Storage** para almacenamiento en la nube
+- **Implementación de Sharp** para procesamiento de imágenes
+- **Manejo mejorado de archivos** con validación de tipos MIME
+- **Respuestas detalladas** en caso de cargas parcialmente exitosas
+
 ## Junio 2025 - Versión 1.3.0
 
 ### ✨ Nuevas características
@@ -83,9 +107,9 @@
 ### Prioridad Alta
 - [ ] Implementación de recuperación de contraseñas
 - [ ] Sistema de verificación de email
-- [ ] Manejo de archivos multimedia con supabase
+- [x] ~~Manejo de archivos multimedia con supabase~~ (Implementado en v1.4.0)
 - [ ] Implementacion de Cors
-- [ ] Documentación detallada de la API con Swagger
+- [x] ~~Documentación detallada de la API con Swagger~~ (Implementado)
 - [ ] Pruebas unitarias y de integración
 - [ ] Despliegue en Docker con docker-compose
 
