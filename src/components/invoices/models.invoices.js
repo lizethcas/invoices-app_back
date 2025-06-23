@@ -1,5 +1,38 @@
 import mongoose from "mongoose";
 
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *      Invoice:
+ *          type: object
+ *          properties:
+ *              customerId:
+ *                  type: number
+ *                  description: ID del cliente
+ *              amount:
+ *                  type: number
+ *                  description: Monto de la factura
+ *              status:
+ *                  type: string
+ *                  description: Estado de la factura
+ *                  enum: ["pending","paid","draft"]
+ *              createdAt:
+ *                  type: string
+ *                  format: date-time
+ *                  description: Fecha de creación de la factura
+ *          required:
+ *              - customerId
+ *              - amount
+ *              - status
+ *          example:
+ *              customerId: 1
+ *              amount: 100
+ *              status: pending
+ * 
+ */
+
 const invoiceSchema = new mongoose.Schema({
     customerId :{
         type:Number,

@@ -4,13 +4,16 @@ import validateInvoice from "../../middleware/middelware.invoices.js";
 
 const router = express.Router();
 
+
 router.get("/", controllerInvoice.getAllInvoices);
 router.get("/:id", controllerInvoice.getInvoiceById);
 
 /* rutas con validacion */
 router.post("/", validateInvoice, controllerInvoice.createInvoice);
-router.put("/:id", validateInvoice, controllerInvoice.updateInvoice);
+router.patch("/:id", controllerInvoice.updateInvoice);
+
 router.delete("/:id", controllerInvoice.deleteInvoice);
+
 router.get("/customer/:id", controllerInvoice.getInvoicesByCustomer);
 
 export default router;
