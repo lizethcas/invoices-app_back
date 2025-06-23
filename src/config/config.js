@@ -16,5 +16,8 @@ export const config = {
     SECRET_KEY: process.env.SECRET_KEY,
     REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
     REDIS_PORT: process.env.REDIS_PORT,
+    SUPABASE_URL: process.env.SUPABASE_URL,
+    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    SUPABASE_PROJECT_ID: process.env.SUPABASE_PROJECT_ID
 }
     
