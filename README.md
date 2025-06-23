@@ -93,26 +93,55 @@ src/
 │   │   ├── auth.controller.js  # Controlador de autenticación
 │   │   ├── auth.routes.js      # Rutas de autenticación
 │   │   └── service.auth.js     # Lógica de negocio de autenticación
+│   │
+│   ├── files/             # Módulo de gestión de archivos
+│   │   └── files.controller.js # Controlador para subida de archivos
+│   │
 │   ├── invoices/          # Módulo de facturas
-│   │   ├── controller.invoices.js
-│   │   ├── models.invoices.js
-│   │   ├── routes.invoices.js
-│   │   └── service.invoice.js
+│   │   ├── controller.invoices.js  # Controlador de facturas
+│   │   ├── models.invoices.js      # Modelo de datos de facturas
+│   │   ├── routes.invoices.js      # Rutas de facturas
+│   │   └── service.invoice.js      # Lógica de negocio de facturas
+│   │
 │   └── users/             # Módulo de usuarios
-│       ├── controller.user.js
-│       ├── models.user.js
-│       ├── routes.user.js
-│       └── service.user.js
+│       ├── controller.user.js      # Controlador de usuarios
+│       ├── model.user.js           # Modelo de datos de usuarios
+│       ├── routes.user.js          # Rutas de usuarios
+│       └── service.user.js         # Lógica de negocio de usuarios
+│
 ├── config/                # Configuración de la aplicación
 │   ├── config.js          # Variables de configuración
 │   ├── database.js        # Configuración de MongoDB
 │   ├── postgress.js       # Configuración de PostgreSQL
-│   └── redis.js           # Configuración de Redis para gestión de sesiones
+│   ├── redis.js           # Configuración de Redis para gestión de sesiones
+│   └── supabase.js        # Configuración de Supabase Storage
+│
 └── middleware/            # Middleware de la aplicación
-    ├── logger.js          # Middleware de registro
+    ├── files.middleware.js  # Middleware para manejo de archivos
+    ├── logger.js           # Middleware de registro
+    ├── middelware.auth.js  # Middleware de autenticación
     ├── middleware.users.js # Middleware de validación de usuarios
-    └── middelware.auth.js # Middleware de autenticación y autorización
+    └── middleware.invoices.js # Middleware para facturas
 ```
+
+### Características de la arquitectura:
+
+1. **Organización por módulos funcionales**: Cada funcionalidad principal (auth, users, invoices, files) tiene su propia carpeta con su controlador, rutas y lógica de negocio.
+
+2. **Separación de responsabilidades**:
+   - Controladores: Manejan las solicitudes HTTP y respuestas
+   - Servicios: Contienen la lógica de negocio
+   - Rutas: Definen los endpoints de la API
+   - Middleware: Funciones de procesamiento intermedio
+
+3. **Configuración centralizada**:
+   - Todas las configuraciones en la carpeta `/config`
+   - Variables de entorno manejadas a través de `.env`
+
+4. **Gestión de archivos**:
+   - Integración con Supabase Storage
+   - Middleware para procesamiento de archivos
+   - Controlador dedicado para operaciones con archivos
 
 ## 🚀 Instalación y Configuración
 
@@ -194,6 +223,34 @@ El proyecto incluye documentación completa e interactiva de la API mediante Swa
    - Muestra los esquemas de datos requeridos
    - Permite probar los endpoints directamente
    - Incluye ejemplos de respuestas de éxito y error
+
+### Documentación del Código con JSDoc
+
+El proyecto incluye documentación detallada del código fuente utilizando JSDoc. Esta documentación es útil para entender la estructura interna del código, las funciones y sus parámetros.
+
+#### Cómo generar la documentación
+
+1. Instala las dependencias si aún no lo has hecho:
+   ```bash
+   npm install
+   ```
+
+2. Genera la documentación con:
+   ```bash
+   npm run jsdoc
+   ```
+
+3. La documentación se generará en la carpeta `docs/` en la raíz del proyecto.
+
+4. Abre `docs/index.html` en tu navegador para ver la documentación generada.
+
+#### Características de la documentación:
+- Documentación detallada de todas las funciones y clases
+- Tipos de parámetros y valores de retorno
+- Ejemplos de uso
+- Estructura de directorios del proyecto
+
+> **Nota:** Asegúrate de mantener actualizados los comentarios JSDoc en el código para que la documentación generada sea precisa.
 
 ### Colección de Postman
 

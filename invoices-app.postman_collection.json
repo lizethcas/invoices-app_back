@@ -3,7 +3,7 @@
 		"_postman_id": "dbb30e6b-326f-470d-835c-1396d648bc58",
 		"name": "invoices-app",
 		"description": "aplicacion de facturas",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "43028695"
 	},
 	"item": [
@@ -15,16 +15,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{url_base}}/invoices/api",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"invoices",
-								"api"
-							]
-						},
+						"url": "{{url_base}}/invoices/api",
 						"description": "consultar todas las factura"
 					},
 					"response": []
@@ -34,15 +25,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{url_base}}/684350ca7d3dacbc52441e54",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"684350ca7d3dacbc52441e54"
-							]
-						},
+						"url": "{{url_base}}/684350ca7d3dacbc52441e54",
 						"description": "crear consultar factura por id"
 					},
 					"response": []
@@ -67,17 +50,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/invoices/api/",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"invoices",
-								"api",
-								""
-							]
-						},
+						"url": "{{url_base}}/invoices/api/",
 						"description": "crear factura"
 					},
 					"response": []
@@ -96,46 +69,26 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/invoices/api/6841e2ea829f31a31b56eb81",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"invoices",
-								"api",
-								"6841e2ea829f31a31b56eb81"
-							]
-						},
+						"url": "{{url_base}}/invoices/api/6841e2ea829f31a31b56eb81",
 						"description": "eliminar factura"
 					},
 					"response": []
 				},
 				{
-					"name": "delete invoice Copy",
+					"name": "patch invoice",
 					"request": {
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n        \"amount\": 700,\n        \"status\": \"pending\"\n     \n    }",
+							"raw": "{\n    \"amount\": 800\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/6841e366e7393c1e0424da02",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"6841e366e7393c1e0424da02"
-							]
-						},
+						"url": "{{url_base}}/invoices/api/68556bd6ed69a396afb9f8a4",
 						"description": "actualizar factura"
 					},
 					"response": []
@@ -145,18 +98,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{url_base}}/invoices/api/customer/:id",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"invoices",
-								"api",
-								"customer",
-								":id"
-							]
-						},
+						"url": "",
 						"description": "## Get Invoice by ID\n\nEsta ruta esta protegida, solo los usuarios administradores pueden consultarla."
 					},
 					"response": []
@@ -171,16 +113,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{url_base}}/users/api",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"users",
-								"api"
-							]
-						},
+						"url": "{{url_base}}/users/api",
 						"description": "consultar todos los usuarios"
 					},
 					"response": []
@@ -190,17 +123,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{url_base}}/users/api/:id",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"users",
-								"api",
-								":id"
-							]
-						},
+						"url": "",
+						"description": "consutlat usuarios por id"
+					},
+					"response": []
+				},
+				{
+					"name": "GET user profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "",
 						"description": "consutlat usuarios por id"
 					},
 					"response": []
@@ -219,17 +152,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/users/api/",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"users",
-								"api",
-								""
-							]
-						},
+						"url": "{{url_base}}/users/api/",
 						"description": "crear usuario"
 					},
 					"response": []
@@ -248,17 +171,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/users/api/:id",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"users",
-								"api",
-								"6841e2ea829f31a31b56eb81"
-							]
-						},
+						"url": "{{url_base}}/users/api/6841e2ea829f31a31b56eb81",
 						"description": "eliminar usuario"
 					},
 					"response": []
@@ -266,29 +179,72 @@
 				{
 					"name": "update user",
 					"request": {
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n        \"username\": \"Ana Lopez\",\n            \"email\": \"ana1@ana.com\",\n            \"password\": \"123456\"\n     \n    }",
+							"raw": " {\n        \"username\": \"Ana Lopez\"\n     \n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/users/api/:id",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"users",
-								"api",
-								":id"
+						"url": "{{url_base}}/users/api",
+						"description": "actualizar usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "update UserById",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"username\": \"Ana Lopez\"\n     \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_base}}/users/api",
+						"description": "actualizar usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "user-image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/macbook/Downloads/test-image.jpg"
+								}
 							]
 						},
-						"description": "actualizar usuario"
+						"url": "{{url_base}}/users/api/upload-user-image"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{url_base}}/users/api/upload-user-images"
 					},
 					"response": []
 				}
@@ -326,24 +282,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"sofia@sofia.com\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"example@example.com\",\n    \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/auth/api/login",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"auth",
-								"api",
-								"login"
-							]
-						}
+						"url": "{{url_base}}/auth/api/login"
 					},
 					"response": []
 				},
@@ -354,24 +300,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"sofia Lopez\",\n    \"email\": \"sofia@sofia.com\",\n    \"password\":\"123456\"\n   \n}",
+							"raw": "{\n    \"username\": \"ana perez\",\n    \"email\": \"sofia@sofia.com\",\n    \"password\":\"123456\"\n   \n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{url_base}}/auth/api/register",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"auth",
-								"api",
-								"register"
-							]
-						}
+						"url": "{{url_base}}/auth/api/register"
 					},
 					"response": []
 				},
@@ -380,17 +316,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{url_base}}/auth/api/refresh-token",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"auth",
-								"api",
-								"refresh-token"
-							]
-						}
+						"url": "{{url_base}}/auth/api/refresh-token"
 					},
 					"response": []
 				},
@@ -399,17 +325,7 @@
 					"request": {
 						"method": "POST",
 						"header": [],
-						"url": {
-							"raw": "{{url_base}}/auth/api/logout",
-							"host": [
-								"{{url_base}}"
-							],
-							"path": [
-								"auth",
-								"api",
-								"logout"
-							]
-						}
+						"url": "{{url_base}}/auth/api/logout"
 					},
 					"response": []
 				}
