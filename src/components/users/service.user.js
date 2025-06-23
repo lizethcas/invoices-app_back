@@ -33,7 +33,7 @@ const getUserById = async(id) => {
     }
 }
 
-const createUser = async(username, email, password, role = 'user') => {
+const createUser = async(username, email, password, role = 'user', user_image) => {
     try {
         // Primero verificamos si ya existe un usuario con ese email
         const existingUser = await user.findOne({ where: { email } });
@@ -46,7 +46,8 @@ const createUser = async(username, email, password, role = 'user') => {
             username, 
             email, 
             password,
-            role // Importante: incluir el rol
+            role,
+            user_image
         });
         return result;
     } catch (error) {
@@ -63,4 +64,15 @@ const deleteUser = async(id) => {
     }
 }
 
-export { getAllUsers, getUserById, createUser, deleteUser, getUserByEmail }
+const patchUser = async( data,id) => {
+    console.log(data)
+    console.log(id)
+    try {
+        const result = await user.update(data, { where: { id } });
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { getAllUsers, getUserById, createUser, deleteUser, getUserByEmail, patchUser }
