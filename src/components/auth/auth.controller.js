@@ -37,7 +37,8 @@ export const userData = (user) => {
         id: user.id,
         email: user.email,
         username: user.username,
-        role: user.role
+        role: user.role,
+        user_profile: user.user_image
     }
 }
 
@@ -98,6 +99,7 @@ const refreshToken = async (req, res)=>{
     }
 
 }
+
 export default {
     login,
     register,

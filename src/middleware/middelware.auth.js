@@ -5,20 +5,15 @@ import redis from "../config/redis.js";
 const verifyToken = (req, res, next) => {
 
     const token = req.cookies.accessToken;
-    console.log(token)
 
     if (!token) {
         return res.status(401).json({ message: "Unauthorizedd" });
     }
 
     try {
-        jwt.verify(token, config.SECRET_KEY, (err, user) => {
-            if (err) {
-                return res.status(401).json({ message: "Unauthorized" });
-            }
-            req.user = user;
-            next();
-        });
+        const decoded = jwt.verify(token, config.SECRET_KEY)
+        req.decoded = decoded;
+        next();
     } catch (error) {
         return res.status(401).json({ message: "Unauthorized" });
     }
@@ -37,7 +32,6 @@ const verifyRefreshToken = async (req, res, next) => {
         const expiredToken = await redis.get(`blacklist_refresh:${decoded.jti}`)
         if (expiredToken) return res.status(401).json({ message: "sesion vencida, por favor inicie sesion de nuevo" });
         
-        console.log(decoded)
         req.decoded = decoded;
        
 
@@ -48,9 +42,9 @@ const verifyRefreshToken = async (req, res, next) => {
 }
 
 const verifyRole = (req, res, next) => {
-    const { role } = req.user;
+    const { role } = req.decoded;
     if (role !== "admin") {
-        return res.status(403).json({ message: "Forbidden" });
+        return res.status(403).json({ message: "no tiene permiso para realizar esta accion" });
     }
     next();
 }
