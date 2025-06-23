@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Sistema de Facturación - Proyecto Educativo</h1>
+<h2>🔔 Novedades Recientes</h2>
+<blockquote>
+<h4>Junio 2025 - v1.3.0 - Autenticación con Redis</h4>
+<ul>
+<li>✅ <strong>Integración con Redis</strong> para gestión avanzada de sesiones</li>
+<li>✅ <strong>Sistema de blacklist</strong> para tokens revocados</li>
+<li>✅ <strong>Mejoras en la seguridad</strong> de la autenticación</li>
+</ul>
+<h4>Junio 2025 - v1.2.0 - Filtrado de Facturas y Mejoras de Servicios</h4>
+<ul>
+<li>✅ <strong>Filtrado de facturas por cliente</strong> implementado</li>
+<li>✅ <strong>Mejoras en los servicios de facturación</strong></li>
+</ul>
+<p><a href="./CHANGELOG.md">Ver CHANGELOG completo</a> para más detalles sobre todas las mejoras.</p>
+</blockquote>
+<h2>📚 Descripción</h2>
+<p>Este es un proyecto educativo de una API REST para gestión de facturación desarrollado con Node.js. El sistema permite la administración de usuarios y facturas, utilizando una arquitectura moderna basada en componentes y siguiendo buenas prácticas de desarrollo.</p>
+<blockquote>
+<p><strong>NOTA IMPORTANTE</strong>: Este proyecto ha sido creado con fines exclusivamente educativos como parte de un curso de desarrollo web con Node.js. No está destinado para uso en entornos de producción sin las debidas modificaciones y mejoras de seguridad.</p>
+</blockquote>
+<h2>🛠️ Tecnologías Utilizadas</h2>
+<p align="center">
+  <a href="https://nodejs.org/" target="_blank">
+    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  </a>
+  <a href="https://expressjs.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  </a>
+  <a href="https://www.mongodb.com/" target="_blank">
+    <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  </a>
+  <a href="https://www.postgresql.org/" target="_blank">
+    <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  </a>
+  <a href="https://redis.io/" target="_blank">
+    <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
+  </a>
+  <a href="https://mongoosejs.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white" alt="Mongoose" />
+  </a>
+  <a href="https://sequelize.org/" target="_blank">
+    <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white" alt="Sequelize" />
+  </a>
+  <a href="https://jwt.io/" target="_blank">
+    <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="JWT" />
+  </a>
+  <a href="https://www.docker.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  </a>
+  <a href="https://docs.docker.com/compose/" target="_blank">
+    <img src="https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Compose" />
+  </a>
+</p>
+<ul>
+<li><strong>Node.js</strong>: Entorno de ejecución para JavaScript del lado del servidor</li>
+<li><strong>Express</strong>: Framework para crear APIs REST de manera sencilla</li>
+<li><strong>MongoDB</strong>: Base de datos NoSQL para almacenamiento de documentos</li>
+<li><strong>PostgreSQL</strong>: Base de datos relacional para datos estructurados</li>
+<li><strong>Redis</strong>: Almacén de estructura de datos en memoria para gestión de sesiones</li>
+<li><strong>Mongoose</strong>: ODM para facilitar la interacción con MongoDB</li>
+<li><strong>Sequelize</strong>: ORM para interactuar con PostgreSQL</li>
+<li><strong>Docker</strong>: Contenedorización de la aplicación y sus dependencias</li>
+<li><strong>Docker Compose</strong>: Orquestación de contenedores</li>
+<li><strong>JWT (JSON Web Tokens)</strong>: Autenticación basada en tokens para proteger endpoints</li>
+<li><strong>bcrypt</strong>: Cifrado de contraseñas para almacenamiento seguro</li>
+<li><strong>ioredis</strong>: Cliente Redis para Node.js con soporte para Promesas</li>
+</ul>
+<h2>🏗️ Arquitectura</h2>
+<p>El proyecto sigue una arquitectura basada en componentes con separación clara de responsabilidades:</p>
+<pre class="prettyprint source"><code>src/
+├── components/            # Componentes de la aplicación
+│   ├── auth/              # Módulo de autenticación
+│   │   ├── auth.controller.js  # Controlador de autenticación
+│   │   ├── auth.routes.js      # Rutas de autenticación
+│   │   └── service.auth.js     # Lógica de negocio de autenticación
+│   ├── invoices/          # Módulo de facturas
+│   │   ├── controller.invoices.js
+│   │   ├── models.invoices.js
+│   │   ├── routes.invoices.js
+│   │   └── service.invoice.js
+│   └── users/             # Módulo de usuarios
+│       ├── controller.user.js
+│       ├── models.user.js
+│       ├── routes.user.js
+│       └── service.user.js
+├── config/                # Configuración de la aplicación
+│   ├── config.js          # Variables de configuración
+│   ├── database.js        # Configuración de MongoDB
+│   ├── postgress.js       # Configuración de PostgreSQL
+│   └── redis.js           # Configuración de Redis para gestión de sesiones
+└── middleware/            # Middleware de la aplicación
+    ├── logger.js          # Middleware de registro
+    ├── middleware.users.js # Middleware de validación de usuarios
+    └── middelware.auth.js # Middleware de autenticación y autorización
+</code></pre>
+<h2>🚀 Instalación y Configuración</h2>
+<h3>Prerrequisitos</h3>
+<ul>
+<li>Node.js (v14 o superior)</li>
+<li>Docker y Docker Compose</li>
+<li>Git</li>
+</ul>
+<h3>Pasos para la instalación</h3>
+<ol>
+<li>
+<p><strong>Clonar el repositorio</strong>:</p>
+<pre class="prettyprint source lang-bash"><code>git clone &lt;url-del-repositorio>
+cd invoices-app
+</code></pre>
+</li>
+<li>
+<p><strong>Configurar variables de entorno</strong>:</p>
+<pre class="prettyprint source lang-bash"><code>cp .env_example .env
+</code></pre>
+<p>Edita el archivo <code>.env</code> con tus propias credenciales y configuraciones.</p>
+</li>
+<li>
+<p><strong>Instalación con Docker</strong> (recomendado):</p>
+<pre class="prettyprint source lang-bash"><code>npm run docker
+</code></pre>
+<p>Este comando construirá y ejecutará todos los contenedores necesarios.</p>
+</li>
+<li>
+<p><strong>Instalación local</strong> (alternativa):</p>
+<pre class="prettyprint source lang-bash"><code>npm install
+npm run dev
+</code></pre>
+<p>Nota: Para la instalación local, necesitarás tener MongoDB y PostgreSQL instalados y configurados.</p>
+</li>
+</ol>
+<h2>🔌 Endpoints API</h2>
+<h3>Autenticación</h3>
+<ul>
+<li><code>POST /auth/api/login</code> - Iniciar sesión con email y contraseña</li>
+<li><code>POST /auth/api/register</code> - Registrar un nuevo usuario (redirige al controlador de usuarios)</li>
+</ul>
+<h3>Usuarios</h3>
+<ul>
+<li><code>GET /users/api</code> - Obtener todos los usuarios</li>
+<li><code>POST /users/api</code> - Crear un nuevo usuario</li>
+<li><code>GET /users/api/:id</code> - Obtener un usuario por ID</li>
+<li><code>PUT /users/api/:id</code> - Actualizar un usuario</li>
+<li><code>DELETE /users/api/:id</code> - Eliminar un usuario</li>
+</ul>
+<h3>Facturas</h3>
+<ul>
+<li><code>GET /invoices/api</code> - Obtener todas las facturas</li>
+<li><code>POST /invoices/api</code> - Crear una nueva factura</li>
+<li><code>GET /invoices/api/:id</code> - Obtener una factura por ID</li>
+<li><code>GET /invoices/api/customer/:id</code> - Obtener facturas de un cliente específico</li>
+<li><code>PUT /invoices/api/:id</code> - Actualizar una factura</li>
+<li><code>DELETE /invoices/api/:id</code> - Eliminar una factura</li>
+</ul>
+<h2>📃 Colección de Postman</h2>
+<p>El proyecto incluye una colección de Postman lista para ser importada y utilizada para probar todos los endpoints de la API. Esta colección contiene ejemplos preconfigurados para todas las operaciones CRUD tanto para usuarios como para facturas.</p>
+<h3>Cómo usar la colección de Postman</h3>
+<ol>
+<li>Abre Postman</li>
+<li>Haz clic en &quot;Import&quot;</li>
+<li>Selecciona el archivo <code>invoices-app.postman_collection.json</code> incluido en la raíz del proyecto</li>
+<li>Una vez importada, configura las variables de entorno necesarias:
+<ul>
+<li><code>url_base</code>: URL base para los endpoints de facturas (ej. <code>http://localhost:X000/invoices/api</code>)</li>
+</ul>
+</li>
+</ol>
+<h3>Flujo de trabajo recomendado</h3>
+<ol>
+<li>Crear un usuario con el endpoint <code>POST /auth/api/register</code></li>
+<li>Iniciar sesión con el endpoint <code>POST /auth/api/login</code> para obtener las cookies HTTP-Only con los tokens</li>
+<li>Las cookies se envían automáticamente en cada solicitud, no es necesario configurar headers manualmente</li>
+<li>El refresh token se renueva automáticamente cuando el access token expira usando el endpoint <code>POST /auth/api/refresh</code></li>
+<li>Para cerrar sesión, usa el endpoint <code>POST /auth/api/logout</code></li>
+<li>¡Ahora puedes realizar operaciones en facturas y usuarios!</li>
+<li>Para filtrar facturas por cliente, utiliza el endpoint <code>GET /invoices/api/customer/:id</code></li>
+</ol>
+<h2>📊 Bases de Datos</h2>
+<p>Este proyecto utiliza múltiples sistemas de almacenamiento para diferentes propósitos:</p>
+<ul>
+<li><strong>MongoDB</strong>: Almacena documentos como facturas</li>
+<li><strong>PostgreSQL</strong>: Almacena datos estructurados de usuarios</li>
+<li><strong>Redis</strong>: Gestiona sesiones activas y blacklist de tokens</li>
+</ul>
+<h2>🔒 Seguridad y Autenticación</h2>
+<p>El sistema implementa un esquema de seguridad avanzado con JWT y Redis:</p>
+<ul>
+<li>
+<p><strong>Autenticación por Tokens</strong>:</p>
+<ul>
+<li>Access Token (15 min de duración)</li>
+<li>Refresh Token (7 días, almacenado en Redis)</li>
+<li>Cookies HTTP-Only seguras</li>
+</ul>
+</li>
+<li>
+<p><strong>Protecciones de Seguridad</strong>:</p>
+<ul>
+<li>Blacklist de tokens revocados</li>
+<li>Protección contra CSRF</li>
+<li>Headers de seguridad HTTP</li>
+</ul>
+</li>
+<li>
+<p><strong>verifyRole</strong>: Middleware que verifica si el usuario tiene el rol adecuado para acceder a ciertos recursos</p>
+</li>
+<li>
+<p><strong>bcrypt</strong>: Utilizado para el hash seguro de contraseñas antes de almacenarlas en la base de datos</p>
+</li>
+</ul>
+<h3>Roles de Usuario</h3>
+<p>El sistema soporta dos tipos de roles:</p>
+<ul>
+<li>
+<p><strong>user</strong>: Rol estándar con acceso limitado (valor por defecto)</p>
+<ul>
+<li>Puede crear, leer, actualizar y eliminar SOLO SUS PROPIAS facturas</li>
+<li>No tiene acceso a información de otros usuarios</li>
+<li>Al listar facturas, solo ve las asociadas a su ID de usuario</li>
+</ul>
+</li>
+<li>
+<p><strong>admin</strong>: Rol con privilegios elevados para operaciones administrativas</p>
+<ul>
+<li>Acceso completo a todos los recursos del sistema</li>
+<li>Puede gestionar todos los usuarios (crear, leer, actualizar, eliminar)</li>
+<li>Puede gestionar todas las facturas independientemente del cliente</li>
+<li>No tiene restricciones en listados o búsquedas</li>
+</ul>
+</li>
+</ul>
+<h3>Implementación de Permisos</h3>
+<p>El control de acceso se implementa en dos niveles:</p>
+<ol>
+<li>
+<p><strong>Middleware de Autenticación</strong>:</p>
+<ul>
+<li>Valida que el token JWT sea válido en cada solicitud a endpoints protegidos</li>
+<li>Extrae la información del usuario (ID y rol) y la adjunta al objeto de solicitud</li>
+</ul>
+</li>
+<li>
+<p><strong>Middleware de Autorización</strong>:</p>
+<ul>
+<li><code>verifyRole</code>: Valida que el usuario tenga el rol &quot;admin&quot; para acceder a rutas restringidas</li>
+<li>Controles de acceso basados en la propiedad de los recursos (un usuario regular solo puede acceder a sus propios recursos)</li>
+</ul>
+</li>
+</ol>
+<h3>Flujo de Autenticación y Autorización</h3>
+<ol>
+<li>
+<p><strong>Inicio de Sesión</strong>:</p>
+<ul>
+<li>El usuario envía credenciales válidas</li>
+<li>El servidor genera dos tokens:
+<ul>
+<li><strong>Access Token</strong> (corto, 15 minutos)</li>
+<li><strong>Refresh Token</strong> (largo, 7 días) almacenado en Redis</li>
+</ul>
+</li>
+<li>Ambos tokens se envían como cookies HTTP-Only</li>
+</ul>
+</li>
+<li>
+<p><strong>Acceso a Rutas Protegidas</strong>:</p>
+<ul>
+<li>El cliente envía automáticamente las cookies con cada solicitud</li>
+<li>El middleware <code>verifyToken</code>:
+<ul>
+<li>Verifica el token de acceso</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Refresco de Tokens</strong>:</p>
+<ul>
+<li>Cuando el access token expira, el cliente usa el refresh token</li>
+<li>Consulta la blacklist en Redis</li>
+<li>Si el token es válido, permite el acceso</li>
+<li>El middleware <code>verifyRefreshToken</code>:
+<ul>
+<li>Verifica el refresh token contra Redis</li>
+<li>Si es válido, genera nuevos tokens</li>
+<li>Invalida el refresh token anterior</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cierre de Sesión</strong>:</p>
+<ul>
+<li>El servidor invalida ambos tokens</li>
+<li>Los tokens se agregan a la blacklist en Redis</li>
+<li>Se eliminan las cookies del cliente</li>
+</ul>
+</li>
+<li>
+<p><strong>Control de Acceso</strong>:</p>
+<ul>
+<li>Para rutas de administrador, se usa <code>verifyRole</code></li>
+<li>Los controladores verifican la propiedad de los recursos</li>
+<li>Todas las operaciones se registran para auditoría</li>
+</ul>
+</li>
+</ol>
+<h3>Validaciones de Datos</h3>
+<p>El sistema incluye validaciones robustas mediante Sequelize:</p>
+<h4>Validación de Usuarios</h4>
+<ul>
+<li>
+<p><strong>Email</strong>:</p>
+<ul>
+<li>Debe tener formato válido de correo electrónico</li>
+<li>No puede estar vacío ni ser nulo</li>
+<li>Debe ser único en la base de datos</li>
+</ul>
+</li>
+<li>
+<p><strong>Contraseña</strong>:</p>
+<ul>
+<li>Longitud entre 6 y 12 caracteres</li>
+<li>No puede estar vacía ni ser nula</li>
+<li>Se almacena cifrada mediante bcrypt</li>
+</ul>
+</li>
+<li>
+<p><strong>Nombre de usuario</strong>:</p>
+<ul>
+<li>Requerido (no puede estar vacío)</li>
+<li>Debe ser único en la base de datos</li>
+</ul>
+</li>
+</ul>
+<h2>🧪 Objetivos Educativos</h2>
+<p>Este proyecto está diseñado para enseñar:</p>
+<ol>
+<li>Desarrollo de APIs REST con Express</li>
+<li>Integración con múltiples bases de datos (SQL, NoSQL y Redis)</li>
+<li>Gestión de sesiones con Redis</li>
+<li>Implementación de blacklist para tokens JWT</li>
+<li>Arquitectura de aplicaciones basada en componentes</li>
+<li>Uso de Docker para desarrollo y despliegue</li>
+<li>Estructura de carpetas en Node.js</li>
+<li>Gestión de configuración y variables de entorno</li>
+<li>Autenticación de usuarios con JWT y bcrypt</li>
+<li>Seguridad avanzada en APIs mediante tokens</li>
+<li>Validaciones de datos con Sequelize</li>
+<li>Manejo de roles y permisos</li>
+<li>Implementación de tokens de refresco seguros</li>
+<li>Gestión de la expiración de sesiones</li>
+</ol>
+<h2>📝 Licencia</h2>
+<p>Este proyecto está bajo la licencia MIT, lo que permite su uso con fines educativos.</p>
+<h2>👩‍💻 Autor</h2>
+<p>Desarrollado por Lizeth Castillo - @liztechcode como parte del curso de desarrollo web con Node.js.</p>
+<hr>
+<p><em>Nota: Este README es parte del material educativo y puede ser modificado según las necesidades del curso.</em></p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-invoices.html">invoices</a></li></ul><h3>Global</h3><ul><li><a href="global.html#invoiceSchema">invoiceSchema</a></li><li><a href="global.html#user">user</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Jun 19 2025 20:46:24 GMT-0500 (Colombia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

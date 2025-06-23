@@ -1,0 +1,19 @@
+{
+    "source": {
+      "include": ["src/"],
+      "includePattern": "\\.(js|jsx|mjs)$"
+    },
+    "opts": {
+      "recurse": true,
+      "destination": "./docs/",
+      "readme": "README.md",
+      "template": "./node_modules/jsdoc/templates/default"
+    },
+    "plugins": [
+      "plugins/markdown"
+    ],
+    "templates": {
+      "cleverLinks": true,
+      "monospaceLinks": true
+    }
+  }
